@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/auth/login_page.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/pages/main/main_page.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/splash_screen_page.dart';
 
 void main() => runApp(const MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreenPage(),
         '/login': (context) => const LoginPage(),
+        '/main': (context) => const MainPage(),
       },
     );
   }
