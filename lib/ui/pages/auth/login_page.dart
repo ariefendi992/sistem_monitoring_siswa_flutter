@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_button.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +34,8 @@ class LoginPage extends StatelessWidget {
                   'Aplikasi Monitoring\n &\n Absensi Siwa'.toUpperCase(),
                   textAlign: TextAlign.center,
                   style: blackTextStyle.copyWith(
-                    fontWeight: medium,
-                    fontSize: 16,
+                    fontWeight: semiBold,
+                    fontSize: 17,
                     letterSpacing: 0.6,
                   ),
                 ),
@@ -43,7 +48,7 @@ class LoginPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.symmetric(
                       horizontal: defaultPadding,
-                      vertical: defaultPadding,
+                      vertical: 22,
                     ),
                     decoration: BoxDecoration(
                       color: kWhiteColor,
@@ -68,6 +73,7 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
+                        const SizedBox(height: 12),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: TextFormField(
@@ -85,17 +91,20 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 24),
+                        CustomButton(
+                          height: 50,
+                          borderRadius: 6.0,
+                          width: double.infinity,
+                          hintText: 'Masuk',
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/main');
+                          },
+                        ),
+                        const SizedBox(height: 12),
                       ],
                     ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                CustomButton(
-                  hintText: 'Masuk',
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/main');
-                  },
                 ),
                 const SizedBox(height: 90),
               ],
