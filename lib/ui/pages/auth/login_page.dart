@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/auth_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_button.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
 
@@ -10,6 +12,31 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final formKey = GlobalKey<FormState>();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  // void prosesLogin() async {
+  //   try {
+  //     final response = await AuthService().login(
+  //       UserModel(
+  //           username: usernameController.text,
+  //           password: passwordController.text),
+  //     );
+
+  //     var jsonResp = json.decode(response!.body);
+  //     if (jsonResp == 200) {
+  //       UserModel user = UserModel.fromJson(jsonResp['data']);
+  //       debugPrint('hak akses ${user.group}');
+  //       if (user.group == 'admin') {
+  //         Navigator.pushReplacementNamed(context, 'main');
+  //       }
+  //     }
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: TextFormField(
                             cursorColor: kBlackColor,
+                            controller: usernameController,
                             decoration: InputDecoration(
                               icon: Icon(
                                 Icons.person,
@@ -77,6 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: TextFormField(
+                            controller: passwordController,
                             cursorColor: kBlackColor,
                             decoration: InputDecoration(
                               icon: Icon(
@@ -92,13 +121,38 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         const SizedBox(height: 24),
-                        CustomButton(
-                          height: 50,
-                          borderRadius: 6.0,
-                          width: double.infinity,
-                          hintText: 'Masuk',
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/main');
+                        BlocConsumer<AuthCubit, AuthState>(
+                          listener: (context, state) {
+                            if (state is AuthSuccess) {
+                              debugPrint('group = ${state.users.group}');
+                              // if (state.users.group == 'admin') {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/main', (route) => false);
+                              // }
+                            } else if (state is AuthFailed) {
+                              debugPrint(state.error);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: Colors.redAccent,
+                                  content: Text(state.error),
+                                ),
+                              );
+                            }
+                          },
+                          builder: (context, state) {
+                            return CustomButton(
+                              height: 50,
+                              borderRadius: 6.0,
+                              width: double.infinity,
+                              hintText: 'Masuk',
+                              onPressed: () {
+                                // prosesLogin();
+                                context.read<AuthCubit>().login(
+                                      username: usernameController.text,
+                                      password: passwordController.text,
+                                    );
+                              },
+                            );
                           },
                         ),
                         const SizedBox(height: 12),

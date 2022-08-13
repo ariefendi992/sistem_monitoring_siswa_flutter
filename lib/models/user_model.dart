@@ -1,12 +1,16 @@
-class UserModel {
-  final String id, username, email, group, password;
+import 'package:equatable/equatable.dart';
 
-  UserModel(
-      {required this.id,
-      required this.username,
-      required this.email,
-      required this.group,
-      required this.password});
+class UserModel extends Equatable {
+  final int? id;
+  final String? username, email, group, password;
+
+  const UserModel({
+    required this.id,
+    required this.username,
+    required this.email,
+    required this.group,
+    required this.password,
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
@@ -24,4 +28,7 @@ class UserModel {
         'group': group,
         'email': email,
       };
+
+  @override
+  List<Object?> get props => [id, username, email, group, password];
 }
