@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 class UserModel extends Equatable {
   final int? id;
   final String? username, email, group, password;
+  final String? namaDepan, namaBelakang;
 
   const UserModel({
     required this.id,
@@ -10,6 +11,8 @@ class UserModel extends Equatable {
     required this.email,
     required this.group,
     required this.password,
+    required this.namaDepan,
+    required this.namaBelakang,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -19,6 +22,8 @@ class UserModel extends Equatable {
       password: json['password'],
       email: json['email'],
       group: json['group'],
+      namaDepan: json['nama_depan'],
+      namaBelakang: json['nama_belakang'],
     );
   }
 

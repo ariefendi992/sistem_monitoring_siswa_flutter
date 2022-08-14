@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/utils/secure_storage.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
@@ -10,6 +13,7 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
+  String? group;
   @override
   void initState() {
     super.initState();
@@ -20,8 +24,24 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     });
   }
 
-  void autoLogin() {
-    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+  void autoLogin() async {
+    group = await SecureStorage().readStorage('group');
+    String? id = await SecureStorage().readStorage('id');
+
+    debugPrint(id);
+    if (group == 'siswa') {
+      if (!mounted) return;
+      context.read<SiswaCubit>().getOneSiswa();
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/mainSiswa', (route) => false);
+    } else {
+      if (!mounted) return;
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    }
+  }
+
+  void loguot() async {
+    await SecureStorage().deleteAllStorage();
   }
 
   @override

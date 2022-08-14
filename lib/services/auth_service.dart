@@ -30,7 +30,7 @@ class AuthService {
       debugPrint('Data respon login = $data');
 
       await SecureStorage().setStorage('group', data['group']);
-      await SecureStorage().setStorage('id', data['ID']);
+      await SecureStorage().setStorage('id', data['id'].toString());
 
       UserModel users = UserModel.fromJson(data);
 
@@ -38,6 +38,14 @@ class AuthService {
     } else {
       var data = jsonDecode(response.body);
       throw data['msg'];
+    }
+  }
+
+  Future<void> logOut() async {
+    try {
+      await SecureStorage().deleteAllStorage();
+    } catch (e) {
+      rethrow;
     }
   }
 }

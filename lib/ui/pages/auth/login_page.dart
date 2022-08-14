@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sistem_monitoring_siswa_flutter/cubit/auth_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_button.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
 
@@ -125,10 +126,14 @@ class _LoginPageState extends State<LoginPage> {
                           listener: (context, state) {
                             if (state is AuthSuccess) {
                               debugPrint('group = ${state.users.group}');
-                              // if (state.users.group == 'admin') {
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, '/main', (route) => false);
-                              // }
+                              if (state.users.group == 'guru') {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, '/mainGuru', (route) => false);
+                              } else if (state.users.group == 'siswa') {
+                                context.read<SiswaCubit>().getOneSiswa();
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, '/mainSiswa', (route) => false);
+                              }
                             } else if (state is AuthFailed) {
                               debugPrint(state.error);
                               ScaffoldMessenger.of(context).showSnackBar(
