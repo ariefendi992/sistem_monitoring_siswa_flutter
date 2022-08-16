@@ -18,7 +18,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   void initState() {
     super.initState();
     setState(() {
-      Timer(const Duration(seconds: 3), () {
+      Timer(const Duration(seconds: 4), () {
         autoLogin();
       });
     });
@@ -47,7 +47,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kLightBlueColor,
+      backgroundColor: kWhiteColor2,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -70,6 +70,10 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                 letterSpacing: 1.4,
               ),
               textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 14),
+            CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(kBlackColor),
             ),
             const SizedBox(height: 18),
           ],

@@ -10,6 +10,8 @@ class SiswaModel extends Equatable {
   final String? namaDepan, namaBelakang;
   final String? agama, alamat;
   final String? namaAyah, namaIbu;
+  final String? profilPicture;
+  final String? kelas;
 
   const SiswaModel({
     required this.userID,
@@ -24,6 +26,8 @@ class SiswaModel extends Equatable {
     required this.namaIbu,
     required this.agama,
     required this.alamat,
+    required this.profilPicture,
+    required this.kelas,
   });
 
   factory SiswaModel.fromJson(Map<String, dynamic> json) {
@@ -40,6 +44,8 @@ class SiswaModel extends Equatable {
       namaIbu: json['nama_ibu'],
       agama: json['agama'],
       alamat: json['alamat'],
+      profilPicture: json['foto'],
+      kelas: json['kelas'],
     );
   }
 

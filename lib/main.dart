@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/auth/login_page.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/main/guru/guru_main_page.dart';
@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -23,13 +22,14 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SiswaCubit(),
+        ),
+        BlocProvider(
+          create: (context) => PageCubit(),
         )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          textTheme: GoogleFonts.robotoTextTheme(textTheme),
-        ),
+        theme: ThemeData(fontFamily: 'Roboto'),
         routes: {
           '/': (context) => const SplashScreenPage(),
           '/login': (context) => const LoginPage(),

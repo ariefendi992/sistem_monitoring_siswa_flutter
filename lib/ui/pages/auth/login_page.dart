@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kLightBlueColor,
+      backgroundColor: kWhiteColor2,
       body: Padding(
         padding: EdgeInsets.all(defaultPadding),
         child: Center(
@@ -94,7 +94,8 @@ class _LoginPageState extends State<LoginPage> {
                                 Icons.person,
                                 color: kBlackColor,
                               ),
-                              hintText: 'Username',
+                              hintText: 'NISN/NIP',
+                              hintStyle: greyTextStyle.copyWith(),
                               focusColor: kGreyColor,
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: kBlackColor),
@@ -106,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: TextFormField(
+                            obscureText: true,
                             controller: passwordController,
                             cursorColor: kBlackColor,
                             decoration: InputDecoration(
@@ -114,6 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                                 color: kBlackColor,
                               ),
                               hintText: 'Password',
+                              hintStyle: greyTextStyle.copyWith(),
                               focusColor: kGreyColor,
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: kBlackColor),
@@ -165,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 90),
+                const SizedBox(height: 10),
               ],
             ),
           ),
