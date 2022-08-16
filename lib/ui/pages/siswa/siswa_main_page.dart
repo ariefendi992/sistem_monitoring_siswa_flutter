@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
-import 'package:sistem_monitoring_siswa_flutter/ui/pages/main/siswa/qr_code_siswa_page.dart';
-import 'package:sistem_monitoring_siswa_flutter/ui/pages/main/siswa/siswa_home_page.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/qr_code_siswa_page.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/siswa_home_page.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_bottom_navigation.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
 

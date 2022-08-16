@@ -4,8 +4,8 @@ import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/auth/login_page.dart';
-import 'package:sistem_monitoring_siswa_flutter/ui/pages/main/guru/guru_main_page.dart';
-import 'package:sistem_monitoring_siswa_flutter/ui/pages/main/siswa/siswa_main_page.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/pages/guru/guru_main_page.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/siswa_main_page.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/splash_screen_page.dart';
 
 void main() => runApp(const MyApp());

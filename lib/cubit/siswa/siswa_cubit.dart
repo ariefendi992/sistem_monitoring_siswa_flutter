@@ -17,4 +17,14 @@ class SiswaCubit extends Cubit<SiswaState> {
       emit(SiswaFailed(e.toString()));
     }
   }
+
+  void generateQrCode() async {
+    try {
+      emit(SiswaLoading());
+      SiswaModel siswa = await SiswaService().generateQrCode();
+      emit(SiswaSuccess(siswa));
+    } catch (e) {
+      emit(SiswaFailed(e.toString()));
+    }
+  }
 }

@@ -3,7 +3,7 @@ import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
 
 class CustomButton extends StatelessWidget {
   final String hintText;
-  final double width, height, borderRadius;
+  final double width, height, borderRadius, fontSize;
   final Function() onPressed;
   final EdgeInsets margin;
 
@@ -15,6 +15,7 @@ class CustomButton extends StatelessWidget {
     this.borderRadius = 18.0,
     this.width = double.infinity,
     this.margin = EdgeInsets.zero,
+    this.fontSize = 22,
   }) : super(key: key);
 
   @override
@@ -33,7 +34,8 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           hintText,
-          style: whiteTextStyle.copyWith(fontWeight: medium, fontSize: 22),
+          style:
+              whiteTextStyle.copyWith(fontWeight: medium, fontSize: fontSize),
         ),
       ),
     );

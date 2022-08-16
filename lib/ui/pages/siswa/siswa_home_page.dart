@@ -53,14 +53,14 @@ class SiswaHomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${state.siswa.namaDepan}',
+                            '${state.siswa.namaDepan} ${state.siswa.namaBelakang}',
                             style: whiteTextStyle.copyWith(
-                                fontSize: 16, fontWeight: medium),
+                                fontSize: 18, fontWeight: medium),
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'Kelas : ${state.siswa.kelas}',
-                            style: whiteTextStyle.copyWith(),
+                            'Kelas : ${state.siswa.kelas ?? 'Belum ada'}',
+                            style: whiteTextStyle.copyWith(fontSize: 15),
                           ),
                           // const Spacer(),
                         ],

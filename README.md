@@ -1,8 +1,10 @@
-# sistem_monitoring_siswa_flutter
+![](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white) ![](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue) ![](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+
+### sistem_monitoring_siswa_flutter
 
 A new Flutter project.
 
-## Getting Started
+#### Getting Started
 
 This project is a starting point for a Flutter application.
 

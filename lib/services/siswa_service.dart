@@ -23,4 +23,20 @@ class SiswaService {
           'Failed load siswa detail dat. url $url, status : ${response.statusCode}');
     }
   }
+
+  Future<SiswaModel> generateQrCode() async {
+    String id = await SecureStorage().readStorage('id');
+    var url = '$baseUrl/siswa/generate-qrcode/$id';
+    var header = {'Content-Type': 'application.json'};
+    var response = await http.put(Uri.parse(url), headers: header);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      SiswaModel user = SiswaModel.fromJson(data);
+      return user;
+    } else {
+      var data = jsonDecode(response.body);
+      throw data['msg'];
+    }
+  }
 }
