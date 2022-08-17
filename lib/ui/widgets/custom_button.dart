@@ -34,8 +34,10 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           hintText,
-          style:
-              whiteTextStyle.copyWith(fontWeight: medium, fontSize: fontSize),
+          style: whiteTextStyle.copyWith(
+            fontWeight: medium,
+            fontSize: fontSize,
+          ),
         ),
       ),
     );

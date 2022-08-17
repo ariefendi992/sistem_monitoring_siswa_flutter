@@ -2,7 +2,8 @@
 
 ### sistem_monitoring_siswa_flutter
 
-A new Flutter project.
+Flutter Absensi Siswa with API Pthon Flask.
+
 
 #### Getting Started
 

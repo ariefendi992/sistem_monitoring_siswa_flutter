@@ -17,27 +17,6 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  // void prosesLogin() async {
-  //   try {
-  //     final response = await AuthService().login(
-  //       UserModel(
-  //           username: usernameController.text,
-  //           password: passwordController.text),
-  //     );
-
-  //     var jsonResp = json.decode(response!.body);
-  //     if (jsonResp == 200) {
-  //       UserModel user = UserModel.fromJson(jsonResp['data']);
-  //       debugPrint('hak akses ${user.group}');
-  //       if (user.group == 'admin') {
-  //         Navigator.pushReplacementNamed(context, 'main');
-  //       }
-  //     }
-  //   } catch (e) {
-  //     debugPrint(e.toString());
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

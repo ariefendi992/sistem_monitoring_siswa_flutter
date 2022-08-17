@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/jadawal_pelajaran.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_button.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
 
 class SiswaHomePage extends StatelessWidget {
@@ -115,10 +117,124 @@ class SiswaHomePage extends StatelessWidget {
     }
 
     Widget bottom() {
+      Widget jadwalPelajaranHarian() {
+        return Card(
+          elevation: 8,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: kWhiteColor,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'Bahasa Indonesia',
+                      style: blackTextStyle.copyWith(fontWeight: medium),
+                    ),
+                    const Spacer(),
+                    Text(
+                      'Rabu, 17 Agustus 2022',
+                      style: blackTextStyle.copyWith(),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '08.00 - 9.30',
+                      style: blackTextStyle.copyWith(
+                          fontSize: 22, fontWeight: medium),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  child: Column(
+                    children: [
+                      Divider(
+                        color: kGreyColor,
+                        thickness: 2,
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        '15 Menit',
+                        style: blackTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: medium,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        'Mapel Berikutnya',
+                        style: blackTextStyle.copyWith(),
+                      ),
+                      const SizedBox(height: 2),
+                      Divider(
+                        color: kGreyColor,
+                        thickness: 2,
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 48),
+                        child: CustomButton(
+                          hintText: 'Detail',
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const JadwalPelajaranPage();
+                                },
+                              ),
+                            );
+                          },
+                          height: 40,
+                          fontSize: 16,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+
+      Widget listPelanggaran() {
+        return Container(
+          margin: const EdgeInsets.only(top: 18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Riwayat Aktifitas',
+                style: blackTextStyle.copyWith(
+                  fontSize: 18,
+                  fontWeight: medium,
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          height: 560,
+          padding:
+              EdgeInsets.symmetric(horizontal: defaultPadding, vertical: 24),
+          height: 505,
           width: double.infinity,
           decoration: BoxDecoration(
             color: kWhiteColor2,
@@ -126,6 +242,13 @@ class SiswaHomePage extends StatelessWidget {
               topLeft: Radius.circular(defaultRadius),
               topRight: Radius.circular(defaultRadius),
             ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              jadwalPelajaranHarian(),
+              listPelanggaran(),
+            ],
           ),
         ),
       );
