@@ -32,13 +32,14 @@ class CustomNavigation extends StatelessWidget {
                 size: 30,
                 color: context.read<PageCubit>().state == index
                     ? kGreenColor
-                    : kBlackColor,
+                    : Colors.blueGrey[200],
               ),
               Text(
                 titleMenu,
                 style: context.read<PageCubit>().state == index
                     ? greenTextStyle.copyWith(fontWeight: medium)
-                    : blackTextStyle.copyWith(fontWeight: medium),
+                    : greyTextStyle.copyWith(
+                        fontWeight: medium, color: Colors.blueGrey[200]),
               ),
               const SizedBox(),
               // const SizedBox(),

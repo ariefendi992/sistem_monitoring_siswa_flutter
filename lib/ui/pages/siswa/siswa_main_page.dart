@@ -56,22 +56,24 @@ class SiswaMainPage extends StatelessWidget {
         return Scaffold(
           backgroundColor: kGreenColor,
           floatingActionButton: FloatingActionButton(
-              backgroundColor: kLightBlueColor,
-              onPressed: () {
-                context.read<PageCubit>().setPage(1);
-                Navigator.pushReplacementNamed(context, '/main');
-              },
+            backgroundColor: kLightBlueColor,
+            onPressed: () {
+              context.read<PageCubit>().setPage(1);
+              Navigator.pushReplacementNamed(context, '/main');
+            },
+            child: CircleAvatar(
+              backgroundColor: kTealColor,
+              radius: 24,
               child: CircleAvatar(
-                  backgroundColor: kTealColor,
-                  radius: 24,
-                  child: CircleAvatar(
-                    backgroundColor: kTealColor,
-                    child: Icon(
-                      CupertinoIcons.qrcode_viewfinder,
-                      color: kWhiteColor,
-                      size: 32,
-                    ),
-                  ))),
+                backgroundColor: kTealColor,
+                child: Icon(
+                  CupertinoIcons.qrcode_viewfinder,
+                  color: kWhiteColor,
+                  size: 32,
+                ),
+              ),
+            ),
+          ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterDocked,
           bottomNavigationBar: BottomAppBar(
@@ -79,10 +81,12 @@ class SiswaMainPage extends StatelessWidget {
             shape: const CircularNotchedRectangle(),
             child: bottomNavigation(),
           ),
-          body: Stack(children: [
-            content(currentIndex),
-            // bottomNavigation(),`
-          ]),
+          body: Stack(
+            children: [
+              content(currentIndex),
+              // bottomNavigation(),`
+            ],
+          ),
         );
       },
     );

@@ -187,7 +187,7 @@ class SiswaHomePage extends StatelessWidget {
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 48),
                         child: CustomButton(
-                          hintText: 'Detail',
+                          hintText: 'Lainnya',
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -220,7 +220,7 @@ class SiswaHomePage extends StatelessWidget {
               Text(
                 'Riwayat Aktifitas',
                 style: blackTextStyle.copyWith(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: medium,
                 ),
               ),
@@ -237,7 +237,7 @@ class SiswaHomePage extends StatelessWidget {
           height: 505,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: kWhiteColor2,
+            color: kBackgroundColor,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(defaultRadius),
               topRight: Radius.circular(defaultRadius),

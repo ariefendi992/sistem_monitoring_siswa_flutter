@@ -22,7 +22,7 @@ class QrCodeSiswa extends StatelessWidget {
                   children: [
                     const SizedBox(height: 70),
                     Text(
-                      'Scan QR Code',
+                      'Scan Me QR Code',
                       style: whiteTextStyle.copyWith(
                           fontWeight: bold, fontSize: 24),
                     ),
