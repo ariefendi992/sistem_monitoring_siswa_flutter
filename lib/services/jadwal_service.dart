@@ -44,7 +44,7 @@ class JadwalService {
       debugPrint('json resp jadwal == $jsonResp');
 
       List<JadwalBelajarModel> jadwalBelajar =
-          List<JadwalBelajarModel>.from(jsonResp['data']['today'].map((e) {
+          List<JadwalBelajarModel>.from(jsonResp['data']['tomorrow'].map((e) {
         return JadwalBelajarModel.fromJson(e);
       })).toList();
 

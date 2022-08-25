@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
-import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/jadawal_pelajaran.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/jadawal_pelajaran_page.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_button.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
 

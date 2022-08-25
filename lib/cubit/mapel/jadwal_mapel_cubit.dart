@@ -18,4 +18,15 @@ class JadwalMapelCubit extends Cubit<JadwalMapelState> {
       emit(JadwalMapelFailed(e.toString()));
     }
   }
+
+  void fetchJadwalTomorrow() async {
+    try {
+      emit(JadwalMapelLoading());
+      List<JadwalBelajarModel> jadwalBelajar =
+          await JadwalService().fetchJadwalTomorrow();
+      emit(JadwalMapelSuccess(jadwalBelajar));
+    } catch (e) {
+      emit(JadwalMapelFailed(e.toString()));
+    }
+  }
 }

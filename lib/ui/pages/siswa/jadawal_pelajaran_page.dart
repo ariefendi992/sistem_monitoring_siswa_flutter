@@ -105,13 +105,14 @@ class _JadwalPelajaranPageState extends State<JadwalPelajaranPage> {
                           );
                         } else {
                           return ListView.builder(
-                              padding: const EdgeInsets.only(top: 12),
-                              shrinkWrap: true,
-                              itemCount: state.jadwalBelajar.length,
-                              itemBuilder: (context, index) {
-                                return CustomCardMapel(
-                                    state.jadwalBelajar[index]);
-                              });
+                            padding: const EdgeInsets.only(top: 12),
+                            shrinkWrap: true,
+                            itemCount: state.jadwalBelajar.length,
+                            itemBuilder: (context, index) {
+                              return CustomCardMapel(
+                                  state.jadwalBelajar[index]);
+                            },
+                          );
                         }
                       }
                       return const Center(
