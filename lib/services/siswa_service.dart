@@ -38,6 +38,4 @@ class SiswaService {
       throw data['msg'];
     }
   }
-
-
 }

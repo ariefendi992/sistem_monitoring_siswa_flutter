@@ -18,7 +18,7 @@ class JadwalService {
 
     if (response.statusCode == 200) {
       var jsonResp = jsonDecode(response.body);
-      debugPrint('json resp jadwal == $jsonResp');
+      debugPrint('json resp jadwal today == $jsonResp');
 
       List<JadwalBelajarModel> jadwalBelajar =
           List<JadwalBelajarModel>.from(jsonResp['data']['today'].map((e) {
@@ -41,7 +41,7 @@ class JadwalService {
 
     if (response.statusCode == 200) {
       var jsonResp = jsonDecode(response.body);
-      debugPrint('json resp jadwal == $jsonResp');
+      debugPrint('json resp jadwal bsok == $jsonResp');
 
       List<JadwalBelajarModel> jadwalBelajar =
           List<JadwalBelajarModel>.from(jsonResp['data']['tomorrow'].map((e) {

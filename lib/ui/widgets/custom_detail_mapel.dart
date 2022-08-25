@@ -7,9 +7,11 @@ class DetailJadwalMapel extends StatelessWidget {
   final String pukul;
   final String kelas;
   final String guru;
+  final int counterPage;
 
   const DetailJadwalMapel({
     Key? key,
+    this.counterPage = 1,
     required this.mapel,
     required this.hari,
     required this.pukul,

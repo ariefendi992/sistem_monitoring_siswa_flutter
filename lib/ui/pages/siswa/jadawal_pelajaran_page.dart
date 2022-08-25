@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/jadwal_mapel_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/jadwal_today_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/jadwal_tomorrow_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_card_jadwal_mapel.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
@@ -16,7 +17,8 @@ class JadwalPelajaranPage extends StatefulWidget {
 class _JadwalPelajaranPageState extends State<JadwalPelajaranPage> {
   @override
   void initState() {
-    context.read<JadwalMapelCubit>().fetchJadwalToday();
+    context.read<JadwalTodayCubit>().fetchJadwalToday();
+    context.read<JadwalTomorrowCubit>().fetchJadwalTomorrow();
     super.initState();
   }
 
@@ -91,13 +93,13 @@ class _JadwalPelajaranPageState extends State<JadwalPelajaranPage> {
                   ),
                 ),
                 Flexible(
-                  child: BlocBuilder<JadwalMapelCubit, JadwalMapelState>(
+                  child: BlocBuilder<JadwalTodayCubit, JadwalTodayState>(
                     builder: (context, state) {
-                      if (state is JadwalMapelLoading) {
+                      if (state is JadwalTodayLoading) {
                         return const Center(
                           child: CircularProgressIndicator(),
                         );
-                      } else if (state is JadwalMapelSuccess) {
+                      } else if (state is JadwalTodaySuccess) {
                         debugPrint('${state.jadwalBelajar.first}');
                         if (state.jadwalBelajar.isEmpty) {
                           return const Center(
@@ -115,8 +117,16 @@ class _JadwalPelajaranPageState extends State<JadwalPelajaranPage> {
                           );
                         }
                       }
-                      return const Center(
-                        child: CircularProgressIndicator(),
+
+                      return Center(
+                        child: Text(
+                          'Jadwal Hari ini tidak ada.',
+                          style: blackTextStyle.copyWith(
+                            fontSize: 20,
+                            color: kTealColor,
+                            fontWeight: bold,
+                          ),
+                        ),
                       );
                     },
                   ),
@@ -127,6 +137,44 @@ class _JadwalPelajaranPageState extends State<JadwalPelajaranPage> {
                     fontSize: 16,
                     fontWeight: medium,
                     color: kTealColor,
+                  ),
+                ),
+                Flexible(
+                  child: BlocBuilder<JadwalTomorrowCubit, JadwalTomorrowState>(
+                    builder: (context, state) {
+                      if (state is JadwalTomorrowLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (state is JadwalTomorrowSuccess) {
+                        debugPrint('${state.jadwalTomorrow.first}');
+                        if (state.jadwalTomorrow.isEmpty) {
+                          return const Center(
+                            child: Text('Belum ada data.'),
+                          );
+                        } else {
+                          return ListView.builder(
+                            padding: const EdgeInsets.only(top: 12),
+                            shrinkWrap: true,
+                            itemCount: state.jadwalTomorrow.length,
+                            itemBuilder: (context, index) {
+                              return CustomCardMapel(
+                                  state.jadwalTomorrow[index]);
+                            },
+                          );
+                        }
+                      }
+                      return Center(
+                        child: Text(
+                          'Jadwal Hari ini tidak ada.',
+                          style: blackTextStyle.copyWith(
+                            fontSize: 20,
+                            color: kTealColor,
+                            fontWeight: bold,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
