@@ -61,6 +61,11 @@ class SiswaHomePage extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
+                            'Nisn : ${state.siswa.nisn}',
+                            style: whiteTextStyle.copyWith(fontSize: 15),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
                             'Kelas : ${state.siswa.kelas ?? 'Belum ada'}',
                             style: whiteTextStyle.copyWith(fontSize: 15),
                           ),

@@ -31,6 +31,7 @@ class AuthService {
 
       await SecureStorage().setStorage('group', data['group']);
       await SecureStorage().setStorage('id', data['id'].toString());
+      await SecureStorage().setStorage('kelas_id', data['kelas_id'].toString());
 
       UserModel users = UserModel.fromJson(data);
 

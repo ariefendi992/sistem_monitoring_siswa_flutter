@@ -20,7 +20,7 @@ class ProfilSiswaPage extends StatelessWidget {
             ),
           ),
           child: Column(
-            children: [],
+            children: const [],
           ),
         ),
       );

@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:sistem_monitoring_siswa_flutter/models/jadwal_belajar_model.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_detail_mapel.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
 
 class CustomCardMapel extends StatelessWidget {
-  final String mapel;
-  final String hari;
-  final String pukul;
-  final String kelas;
-  final String guru;
+  final JadwalBelajarModel jadwalBelajar;
 
-  const CustomCardMapel({
+  const CustomCardMapel(
+    this.jadwalBelajar, {
     Key? key,
-    required this.mapel,
-    required this.hari,
-    required this.pukul,
-    required this.kelas,
-    required this.guru,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(top: 16),
-      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
         color: kWhiteColor,
         borderRadius: BorderRadius.circular(defaultRadius),
@@ -36,65 +30,12 @@ class CustomCardMapel extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(
-            mapel,
-            style: blackTextStyle.copyWith(fontSize: 16, fontWeight: medium),
-          ),
-          const SizedBox(height: 6),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Hari',
-                style: blackTextStyle.copyWith(fontSize: 16),
-              ),
-              Text(
-                hari,
-                style: blackTextStyle.copyWith(fontSize: 16),
-              ),
-            ],
-          ),
-          const Divider(thickness: 1),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Pukul',
-                style: blackTextStyle.copyWith(fontSize: 16),
-              ),
-              Text(
-                pukul,
-                style: blackTextStyle.copyWith(fontSize: 16),
-              ),
-            ],
-          ),
-          const Divider(thickness: 1),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Kelas',
-                style: blackTextStyle.copyWith(fontSize: 16),
-              ),
-              Text(
-                kelas,
-                style: blackTextStyle.copyWith(fontSize: 16),
-              ),
-            ],
-          ),
-          const Divider(thickness: 1),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Guru',
-                style: blackTextStyle.copyWith(fontSize: 16),
-              ),
-              Text(
-                guru,
-                style: blackTextStyle.copyWith(fontSize: 16),
-              ),
-            ],
+          DetailJadwalMapel(
+            mapel: jadwalBelajar.mapel!,
+            hari: '${jadwalBelajar.hari}',
+            pukul: '${jadwalBelajar.mulai} - ${jadwalBelajar.selesai}',
+            kelas: '${jadwalBelajar.kelas}',
+            guru: '${jadwalBelajar.namaGuru}',
           ),
         ],
       ),
