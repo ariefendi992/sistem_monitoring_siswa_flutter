@@ -34,7 +34,6 @@ class CustomCardMapel extends StatelessWidget {
             mapel: jadwalBelajar.mapel!,
             hari: '${jadwalBelajar.hari}',
             pukul: '${jadwalBelajar.mulai} - ${jadwalBelajar.selesai}',
-            kelas: '${jadwalBelajar.kelas}',
             guru: '${jadwalBelajar.namaGuru}',
           ),
         ],

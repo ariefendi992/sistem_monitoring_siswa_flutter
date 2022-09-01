@@ -5,7 +5,6 @@ class DetailJadwalMapel extends StatelessWidget {
   final String mapel;
   final String hari;
   final String pukul;
-  final String kelas;
   final String guru;
   final int counterPage;
 
@@ -15,7 +14,6 @@ class DetailJadwalMapel extends StatelessWidget {
     required this.mapel,
     required this.hari,
     required this.pukul,
-    required this.kelas,
     required this.guru,
   }) : super(key: key);
 
@@ -52,20 +50,6 @@ class DetailJadwalMapel extends StatelessWidget {
             ),
             Text(
               pukul,
-              style: blackTextStyle.copyWith(fontSize: 16),
-            ),
-          ],
-        ),
-        const Divider(thickness: 1),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Kelas',
-              style: blackTextStyle.copyWith(fontSize: 16, color: kGreenColor),
-            ),
-            Text(
-              kelas,
               style: blackTextStyle.copyWith(fontSize: 16),
             ),
           ],
