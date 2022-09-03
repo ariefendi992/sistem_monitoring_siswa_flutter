@@ -54,4 +54,27 @@ class JadwalService {
           'Failed load data mapel, $url, status : ${response.statusCode}');
     }
   }
+
+  Future<JadwalBelajarModel> fetchOneMapel() async {
+    String kelasID = await SecureStorage().readStorage('kelas_id');
+
+    var url = '$baseUrl/siswa/one-mapel/$kelasID';
+    var response = await http.get(Uri.parse(url));
+
+    debugPrint('fetch one mapel ${response.body}');
+
+    if (response.statusCode == 404) {
+      var noMapel = jsonDecode(response.body);
+
+      return noMapel;
+    } else if (response.statusCode == 200) {
+      var jsonResp = jsonDecode(response.body);
+      JadwalBelajarModel mapel = JadwalBelajarModel.fromJson(jsonResp);
+
+      return mapel;
+    } else {
+      throw Exception(
+          'Failed load data, $url | Status Code = ${response.statusCode}');
+    }
+  }
 }

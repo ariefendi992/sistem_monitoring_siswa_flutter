@@ -30,7 +30,7 @@ class SiswaMainPage extends StatelessWidget {
     Widget bottomNavigation() {
       return Container(
         width: double.infinity,
-        height: 60,
+        height: 42,
         // padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration: const BoxDecoration(),
         child: Row(
@@ -55,21 +55,24 @@ class SiswaMainPage extends StatelessWidget {
       builder: (context, currentIndex) {
         return Scaffold(
           backgroundColor: kGreenColor,
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: kLightBlueColor,
-            onPressed: () {
-              context.read<PageCubit>().setPage(1);
-              Navigator.pushReplacementNamed(context, '/main');
-            },
-            child: CircleAvatar(
-              backgroundColor: kTealColor,
-              radius: 24,
+          floatingActionButton: SizedBox(
+            height: 42,
+            width: 42,
+            child: FloatingActionButton(
+              backgroundColor: kLightBlueColor,
+              onPressed: () {
+                context.read<PageCubit>().setPage(1);
+              },
               child: CircleAvatar(
                 backgroundColor: kTealColor,
-                child: Icon(
-                  CupertinoIcons.qrcode_viewfinder,
-                  color: kWhiteColor,
-                  size: 32,
+                radius: 18,
+                child: CircleAvatar(
+                  backgroundColor: kTealColor,
+                  child: Icon(
+                    CupertinoIcons.qrcode_viewfinder,
+                    color: kWhiteColor,
+                    size: 24,
+                  ),
                 ),
               ),
             ),

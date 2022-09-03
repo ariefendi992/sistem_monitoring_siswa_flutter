@@ -29,7 +29,7 @@ class CustomNavigation extends StatelessWidget {
               const SizedBox(),
               Icon(
                 icons,
-                size: 30,
+                size: 24,
                 color: context.read<PageCubit>().state == index
                     ? kGreenColor
                     : Colors.blueGrey[200],

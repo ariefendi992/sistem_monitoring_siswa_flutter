@@ -66,13 +66,14 @@ class _JadwalPelajaranPageState extends State<JadwalPelajaranPage> {
     // Body
     Widget body() {
       return Align(
-        alignment: Alignment.bottomCenter,
+        // alignment: Alignment.bottomCenter,
         child: Container(
             padding: EdgeInsets.symmetric(
               horizontal: defaultPadding,
               vertical: defaultPadding,
             ),
-            height: 625,
+            margin: const EdgeInsets.only(top: 120),
+            height: MediaQuery.of(context).size.height,
             width: double.infinity,
             decoration: BoxDecoration(
               color: kBackgroundColor,
@@ -122,9 +123,9 @@ class _JadwalPelajaranPageState extends State<JadwalPelajaranPage> {
                         child: Text(
                           'Jadwal Hari ini tidak ada.',
                           style: blackTextStyle.copyWith(
-                            fontSize: 20,
+                            fontSize: 14,
                             color: kTealColor,
-                            fontWeight: bold,
+                            fontWeight: medium,
                           ),
                         ),
                       );
@@ -168,9 +169,9 @@ class _JadwalPelajaranPageState extends State<JadwalPelajaranPage> {
                         child: Text(
                           'Jadwal Hari ini tidak ada.',
                           style: blackTextStyle.copyWith(
-                            fontSize: 20,
+                            fontSize: 14,
                             color: kTealColor,
-                            fontWeight: bold,
+                            fontWeight: medium,
                           ),
                         ),
                       );
@@ -185,9 +186,10 @@ class _JadwalPelajaranPageState extends State<JadwalPelajaranPage> {
     return Scaffold(
       backgroundColor: kGreenColor,
       body: Stack(
+        alignment: Alignment.topCenter,
         children: [
-          header(),
           body(),
+          header(),
         ],
       ),
     );

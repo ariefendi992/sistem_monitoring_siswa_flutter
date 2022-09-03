@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/jadwal_one_mapel_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/jadawal_pelajaran_page.dart';
@@ -135,82 +136,127 @@ class SiswaHomePage extends StatelessWidget {
               color: kWhiteColor,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      'Bahasa Indonesia',
-                      style: blackTextStyle.copyWith(fontWeight: medium),
-                    ),
-                    const Spacer(),
-                    Text(
-                      'Rabu, 17 Agustus 2022',
-                      style: blackTextStyle.copyWith(),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '08.00 - 9.30',
-                      style: blackTextStyle.copyWith(
-                          fontSize: 22, fontWeight: medium),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  child: Column(
-                    children: [
-                      Divider(
-                        color: kGreyColor,
-                        thickness: 2,
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        '15 Menit',
-                        style: blackTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: medium,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        'Mapel Berikutnya',
-                        style: blackTextStyle.copyWith(),
-                      ),
-                      const SizedBox(height: 2),
-                      Divider(
-                        color: kGreyColor,
-                        thickness: 2,
-                      ),
-                      const SizedBox(height: 8),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 48),
-                        child: CustomButton(
-                          hintText: 'Lainnya',
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const JadwalPelajaranPage();
-                                },
+            child: BlocBuilder<JadwalOneMapelCubit, JadwalOneMapelState>(
+              builder: (context, state) {
+                if (state is JadwalOneMapelSuccess) {}
+                return BlocBuilder<JadwalOneMapelCubit, JadwalOneMapelState>(
+                  builder: (context, state) {
+                    if (state is JadwalOneMapelSuccess) {
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                '${state.mapel.mapel}',
+                                style:
+                                    blackTextStyle.copyWith(fontWeight: medium),
                               ),
-                            );
-                          },
-                          height: 40,
-                          fontSize: 16,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
+                              const Spacer(),
+                              Text(
+                                '${state.mapel.hari}',
+                                style: blackTextStyle.copyWith(),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${state.mapel.mulai} - ${state.mapel.selesai}',
+                                style: blackTextStyle.copyWith(
+                                    fontSize: 22, fontWeight: medium),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            child: Column(
+                              children: [
+                                Divider(
+                                  color: kGreyColor,
+                                  thickness: 2,
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  '${state.mapel.namaGuru}',
+                                  style: blackTextStyle.copyWith(
+                                    fontSize: 16,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Divider(
+                                  color: kGreyColor,
+                                  thickness: 2,
+                                ),
+                                const SizedBox(height: 8),
+                                Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 48),
+                                  child: CustomButton(
+                                    hintText: 'Lainnya',
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return const JadwalPelajaranPage();
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    height: 40,
+                                    fontSize: 16,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                    return Container(
+                      margin: const EdgeInsets.all(8),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Tidak Ada Jadwal Sekrang',
+                            style: blackTextStyle.copyWith(
+                              fontSize: 14,
+                              fontWeight: medium,
+                            ),
+                          ),
+                          Divider(
+                            color: kGreyColor,
+                            thickness: 2,
+                          ),
+                          const SizedBox(height: 8),
+                          Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 48),
+                            child: CustomButton(
+                              hintText: 'Lihat Jadwal',
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const JadwalPelajaranPage();
+                                    },
+                                  ),
+                                );
+                              },
+                              height: 40,
+                              fontSize: 16,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         );

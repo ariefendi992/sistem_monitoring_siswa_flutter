@@ -9,7 +9,6 @@ class SiswaModel extends Equatable {
   final String? jenisKelamin;
   final String? namaDepan, namaBelakang;
   final String? agama, alamat;
-  final String? namaAyah, namaIbu;
   final String? profilPicture;
   final String? kelas;
   final String? qrCode;
@@ -23,8 +22,6 @@ class SiswaModel extends Equatable {
     required this.namaBelakang,
     required this.nisn,
     required this.jenisKelamin,
-    required this.namaAyah,
-    required this.namaIbu,
     required this.agama,
     required this.alamat,
     required this.profilPicture,
@@ -42,8 +39,6 @@ class SiswaModel extends Equatable {
       namaBelakang: json['nama_belakang'],
       nisn: json['nisn'],
       jenisKelamin: json['jenis_kelamin'],
-      namaAyah: json['nama_ayah'],
-      namaIbu: json['nama_ibu'],
       agama: json['agama'],
       alamat: json['alamat'],
       profilPicture: json['foto'],
@@ -62,8 +57,6 @@ class SiswaModel extends Equatable {
         namaDepan,
         namaBelakang,
         nisn,
-        namaAyah,
-        namaIbu,
         agama,
         alamat
       ];
