@@ -36,6 +36,9 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       context.read<JadwalOneMapelCubit>().fetchOneMapel();
       Navigator.of(context)
           .pushNamedAndRemoveUntil('/mainSiswa', (route) => false);
+    } else if (group == 'guru') {
+      if (!mounted) return;
+      Navigator.pushNamedAndRemoveUntil(context, '/mainGuru', (route) => false);
     } else {
       if (!mounted) return;
       Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);

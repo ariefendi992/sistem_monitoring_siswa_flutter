@@ -7,9 +7,13 @@ class CustomNavigation extends StatelessWidget {
   final IconData icons;
   final int index;
   final String titleMenu;
+  final Color colorIcon;
+  final Color colorText;
 
   const CustomNavigation({
     Key? key,
+    this.colorIcon = const Color.fromARGB(255, 126, 215, 144),
+    this.colorText = const Color.fromARGB(255, 126, 215, 144),
     required this.icons,
     required this.index,
     required this.titleMenu,
@@ -29,19 +33,25 @@ class CustomNavigation extends StatelessWidget {
               const SizedBox(),
               Icon(
                 icons,
-                size: 24,
+                size: 18,
                 color: context.read<PageCubit>().state == index
-                    ? kGreenColor
+                    ? colorIcon
                     : Colors.blueGrey[200],
               ),
               Text(
                 titleMenu,
                 style: context.read<PageCubit>().state == index
-                    ? greenTextStyle.copyWith(fontWeight: medium)
+                    ? greenTextStyle.copyWith(
+                        fontWeight: medium,
+                        fontSize: 14,
+                        color: colorText,
+                      )
                     : greyTextStyle.copyWith(
-                        fontWeight: medium, color: Colors.blueGrey[200]),
+                        fontWeight: medium,
+                        color: Colors.blueGrey[200],
+                        fontSize: 14),
               ),
-              const SizedBox(),
+              // const SizedBox(),
               // const SizedBox(),
             ],
           ),
