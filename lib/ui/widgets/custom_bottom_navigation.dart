@@ -33,7 +33,7 @@ class CustomNavigation extends StatelessWidget {
               const SizedBox(),
               Icon(
                 icons,
-                size: 18,
+                size: 20,
                 color: context.read<PageCubit>().state == index
                     ? colorIcon
                     : Colors.blueGrey[200],
@@ -43,13 +43,13 @@ class CustomNavigation extends StatelessWidget {
                 style: context.read<PageCubit>().state == index
                     ? greenTextStyle.copyWith(
                         fontWeight: medium,
-                        fontSize: 14,
+                        fontSize: 12,
                         color: colorText,
                       )
                     : greyTextStyle.copyWith(
                         fontWeight: medium,
                         color: Colors.blueGrey[200],
-                        fontSize: 14),
+                        fontSize: 12),
               ),
               // const SizedBox(),
               // const SizedBox(),

@@ -24,7 +24,7 @@ class _GuruHomePageState extends State<GuruHomePage> {
         floating: false,
         titleSpacing: 0,
         shadowColor: Colors.transparent,
-        expandedHeight: 160,
+        expandedHeight: 170,
         backgroundColor: kRedColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -89,6 +89,121 @@ class _GuruHomePageState extends State<GuruHomePage> {
         body: CustomScrollView(
       slivers: <Widget>[
         appBar(),
+        const SliverPadding(
+          padding: EdgeInsets.only(top: 10),
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate([
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: defaultPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Recent Menu',
+                    style: blackTextStyle.copyWith(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16,
+                    ),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: kWhiteColor,
+                        borderRadius: BorderRadius.circular(4),
+                        boxShadow: [
+                          BoxShadow(
+                            color: kLightBlueColor,
+                            spreadRadius: 0,
+                            blurRadius: 10,
+                            offset: const Offset(0, 0),
+                            blurStyle: BlurStyle.outer,
+                          )
+                        ],
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Jam Mulai',
+                                style:
+                                    blackTextStyle.copyWith(fontWeight: medium),
+                              ),
+                              const Text('08.00')
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          const Divider(
+                            thickness: 1.0,
+                            height: 2,
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Jam Selesai',
+                                style:
+                                    blackTextStyle.copyWith(fontWeight: medium),
+                              ),
+                              const Text('9.30')
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          const Divider(
+                            thickness: 1.0,
+                            height: 2,
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Kelas',
+                                style:
+                                    blackTextStyle.copyWith(fontWeight: medium),
+                              ),
+                              const Text('VII-1')
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          const Divider(
+                            thickness: 1.0,
+                            height: 2,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ]),
+        ),
+        // SliverList(
+        //   delegate: SliverChildBuilderDelegate(
+        //     ((_, int index) {
+        //       return Padding(
+        //         padding: EdgeInsets.symmetric(
+        //           horizontal: defaultPadding,
+        //           vertical: 16,
+        //         ),
+        //         child: Container(
+        //           height: 174,
+        //           padding: const EdgeInsets.all(16),
+        //           decoration: BoxDecoration(
+        //             borderRadius: BorderRadius.circular(4),
+        //             color: kWhiteColor,
+        //           ),
+        //         ),
+        //       );
+        //     }),
+        //   ),
+        // ),
       ],
     ));
   }
