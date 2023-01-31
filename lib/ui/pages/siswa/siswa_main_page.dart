@@ -30,21 +30,21 @@ class SiswaMainPage extends StatelessWidget {
     Widget bottomNavigation() {
       return Container(
         width: double.infinity,
-        height: 42,
+        height: 68,
         // padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration: const BoxDecoration(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: const [
             CustomNavigation(
-              icons: CupertinoIcons.home,
+              imageString: 'assets/images/home.png',
               index: 0,
-              titleMenu: 'Home',
+              titleMenu: 'Beranda',
             ),
             CustomNavigation(
-              icons: CupertinoIcons.profile_circled,
+              imageString: 'assets/images/profile.png',
               index: 2,
-              titleMenu: 'Akun',
+              titleMenu: 'Profile',
             ),
           ],
         ),
@@ -54,31 +54,31 @@ class SiswaMainPage extends StatelessWidget {
     return BlocBuilder<PageCubit, int>(
       builder: (context, currentIndex) {
         return Scaffold(
-          backgroundColor: kGreenColor,
+          backgroundColor: const Color(0xff6483AF),
           floatingActionButton: SizedBox(
-            height: 42,
-            width: 42,
+            height: 60,
+            width: 60,
             child: FloatingActionButton(
               backgroundColor: kLightBlueColor,
               onPressed: () {
                 context.read<PageCubit>().setPage(1);
               },
               child: CircleAvatar(
-                backgroundColor: kTealColor,
-                radius: 18,
+                backgroundColor: kPurpleCoror,
+                radius: 26,
                 child: CircleAvatar(
-                  backgroundColor: kTealColor,
+                  backgroundColor: kPurpleCoror,
                   child: Icon(
                     CupertinoIcons.qrcode_viewfinder,
                     color: kWhiteColor,
-                    size: 24,
+                    size: 32,
                   ),
                 ),
               ),
             ),
           ),
           floatingActionButtonLocation:
-              FloatingActionButtonLocation.miniCenterDocked,
+              FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: BottomAppBar(
             elevation: 8,
             shape: const CircularNotchedRectangle(),

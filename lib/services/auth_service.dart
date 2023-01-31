@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:sistem_monitoring_siswa_flutter/models/user_model.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/secure_storage.dart';
@@ -10,7 +9,7 @@ class AuthService {
     String? username,
     String? password,
   }) async {
-    var route = ('$baseUrl/auth/user-login');
+    var route = ('$baseUrl/api/v2/auth/login');
 
     var header = {'Content-Type': 'application/json'};
     var body = jsonEncode({
@@ -27,7 +26,7 @@ class AuthService {
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
 
-      debugPrint('Data respon login = $data');
+      // debugPrint('Data respon login = $data');
 
       await SecureStorage().setStorage('group', data['group']);
       await SecureStorage().setStorage('id', data['id'].toString());

@@ -7,7 +7,7 @@ class SiswaModel extends Equatable {
   final String? group;
   final String? nisn;
   final String? jenisKelamin;
-  final String? namaDepan, namaBelakang;
+  final String? firstName, lastName;
   final String? agama, alamat;
   final String? profilPicture;
   final String? kelas;
@@ -18,8 +18,8 @@ class SiswaModel extends Equatable {
     required this.username,
     required this.email,
     required this.group,
-    required this.namaDepan,
-    required this.namaBelakang,
+    required this.firstName,
+    required this.lastName,
     required this.nisn,
     required this.jenisKelamin,
     required this.agama,
@@ -35,8 +35,8 @@ class SiswaModel extends Equatable {
       username: json['username'],
       email: json['email'],
       group: json['group'],
-      namaDepan: json['nama_depan'],
-      namaBelakang: json['nama_belakang'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
       nisn: json['nisn'],
       jenisKelamin: json['jenis_kelamin'],
       agama: json['agama'],
@@ -54,8 +54,8 @@ class SiswaModel extends Equatable {
         email,
         group,
         nisn,
-        namaDepan,
-        namaBelakang,
+        firstName,
+        lastName,
         nisn,
         agama,
         alamat

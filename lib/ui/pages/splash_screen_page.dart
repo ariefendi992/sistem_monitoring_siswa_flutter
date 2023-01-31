@@ -27,9 +27,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   void autoLogin() async {
     group = await SecureStorage().readStorage('group');
-    String? id = await SecureStorage().readStorage('id');
+    // String? id = await SecureStorage().readStorage('id');
 
-    debugPrint(id);
     if (group == 'siswa') {
       if (!mounted) return;
       context.read<SiswaCubit>().getOneSiswa();

@@ -4,6 +4,7 @@ import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/jadwal_one_mapel_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/jadwal_today_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/jadwal_tomorrow_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/list_mapel_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/auth/login_page.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => JadwalOneMapelCubit(),
         ),
+        BlocProvider(
+          create: (context) => ListMapelCubit(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

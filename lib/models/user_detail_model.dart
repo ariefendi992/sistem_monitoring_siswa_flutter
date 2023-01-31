@@ -4,7 +4,8 @@ class UserDetailModel {
       jenisKelamin,
       alamat,
       telp,
-      imageProfil;
+      imageProfil,
+      kelas;
 
   UserDetailModel({
     required this.namaDepan,
@@ -13,15 +14,17 @@ class UserDetailModel {
     required this.alamat,
     required this.telp,
     required this.imageProfil,
+    required this.kelas,
   });
 
   factory UserDetailModel.fromJson(Map<String, dynamic> json) {
     return UserDetailModel(
-        namaDepan: json['nama_depan'],
-        namaBelakang: json['nama_belakang'],
-        jenisKelamin: json['jenisKelamin'],
+        namaDepan: json['first_name'],
+        namaBelakang: json['last_name'],
+        jenisKelamin: json['gender'],
         alamat: json['alamat'],
         telp: json['telp'],
-        imageProfil: json['profil_picture']);
+        imageProfil: json['picture'],
+        kelas: json['kelas']);
   }
 }

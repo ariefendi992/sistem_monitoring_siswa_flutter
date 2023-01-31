@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Icons.person,
                                 color: kBlackColor,
                               ),
-                              hintText: 'NISN/NIP',
+                              hintText: 'Username',
                               hintStyle: greyTextStyle.copyWith(),
                               focusColor: kGreyColor,
                               focusedBorder: UnderlineInputBorder(

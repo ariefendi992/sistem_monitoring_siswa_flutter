@@ -27,16 +27,32 @@ class CustomButton extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          backgroundColor: kTealColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-        ),
-        child: Text(
-          hintText,
-          style: whiteTextStyle.copyWith(
-            fontWeight: medium,
-            fontSize: fontSize,
+            // backgroundColor: kGreenColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
+            padding: const EdgeInsets.all(0)),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xff6387AF),
+                  Color(0xff4A4CA1),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(2)),
+          child: Center(
+            child: Text(
+              hintText,
+              style: whiteTextStyle.copyWith(
+                fontWeight: medium,
+                fontSize: fontSize,
+              ),
+            ),
           ),
         ),
       ),
