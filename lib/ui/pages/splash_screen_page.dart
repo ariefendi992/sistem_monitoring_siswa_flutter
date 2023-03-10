@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/jadwal_one_mapel_cubit.dart';
+// import 'package:sistem_monitoring_siswa_flutter/cubit/mapel/jadwal_one_mapel_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/secure_storage.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
@@ -32,7 +32,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     if (group == 'siswa') {
       if (!mounted) return;
       context.read<SiswaCubit>().getOneSiswa();
-      context.read<JadwalOneMapelCubit>().fetchOneMapel();
+      // context.read<JadwalOneMapelCubit>().fetchOneMapel();
       Navigator.of(context)
           .pushNamedAndRemoveUntil('/mainSiswa', (route) => false);
     } else if (group == 'guru') {

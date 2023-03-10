@@ -22,57 +22,104 @@ class _ListMapelPageState extends State<ListMapelPage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget header() {
+    Widget appBar() {
       return Container(
-        padding: EdgeInsets.only(
-            left: defaultPadding, right: defaultPadding, bottom: 24),
-        width: MediaQuery.of(context).size.width,
-        height: 146,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xff54ADAA),
-              Color(0xff618BAE),
-            ],
+          image: DecorationImage(
+            alignment: Alignment.topCenter,
+            image: AssetImage('assets/images/app_bar.png'),
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    context.read<PageCubit>().setPage(0);
-                    Navigator.pushReplacementNamed(context, '/mainSiswa');
-                  },
-                  child: Icon(
-                    CupertinoIcons.arrow_left,
-                    color: kWhiteColor,
-                    size: 26,
-                  ),
-                ),
-                Text(
-                  'MATA PELAJARAN',
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: semiBold,
-                  ),
-                ),
-                const SizedBox(),
-              ],
-            ),
-          ],
         ),
       );
     }
 
+    Widget appBarTitle() {
+      return SafeArea(
+        child: Column(
+          children: [
+            Container(
+              height: 64,
+              padding: EdgeInsets.all(defaultPadding),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      context.read<PageCubit>().setPage(0);
+                      Navigator.pushReplacementNamed(context, '/mainSiswa');
+                    },
+                    child: const Image(
+                      image: AssetImage('assets/images/left_arrow.png'),
+                      height: 24,
+                      width: 24,
+                    ),
+                  ),
+                  Text(
+                    'MATA PELAJARAN',
+                    style: whiteTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                  const SizedBox(),
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+    }
+    // Widget header() {
+    //   return Container(
+    //     padding: EdgeInsets.only(
+    //         left: defaultPadding, right: defaultPadding, bottom: 24),
+    //     width: MediaQuery.of(context).size.width,
+    //     height: 146,
+    //     decoration: const BoxDecoration(
+    //       gradient: LinearGradient(
+    //         begin: Alignment.topCenter,
+    //         end: Alignment.bottomCenter,
+    //         colors: [
+    //           Color(0xff54ADAA),
+    //           Color(0xff618BAE),
+    //         ],
+    //       ),
+    //     ),
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.end,
+    //       children: [
+    //         Row(
+    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //           children: [
+    //             GestureDetector(
+    //               onTap: () {
+    //                 context.read<PageCubit>().setPage(0);
+    //                 Navigator.pushReplacementNamed(context, '/mainSiswa');
+    //               },
+    //               child: Icon(
+    //                 CupertinoIcons.arrow_left,
+    //                 color: kWhiteColor,
+    //                 size: 26,
+    //               ),
+    //             ),
+    //             Text(
+    //               'MATA PELAJARAN',
+    //               style: whiteTextStyle.copyWith(
+    //                 fontSize: 18,
+    //                 fontWeight: semiBold,
+    //               ),
+    //             ),
+    //             const SizedBox(),
+    //           ],
+    //         ),
+    //       ],
+    //     ),
+    //   );
+    // }
+
     Widget body() {
       return Container(
-        margin: const EdgeInsets.only(top: 160, bottom: 20),
+        margin: const EdgeInsets.only(top: 160, bottom: 48),
         padding: EdgeInsets.only(
           left: defaultPadding,
           right: defaultPadding,
@@ -116,7 +163,9 @@ class _ListMapelPageState extends State<ListMapelPage> {
       backgroundColor: kBackgroundColor,
       body: Stack(
         children: [
-          header(),
+          // header(),
+          appBar(),
+          appBarTitle(),
           body(),
         ],
       ),

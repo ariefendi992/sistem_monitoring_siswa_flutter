@@ -1,9 +1,13 @@
 // import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 // import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
 // import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/siswa/siswa_cubit.dart';
+import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/jadwal/hari_page.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/list_mapel_page.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_main_menu.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
@@ -168,53 +172,123 @@ class SiswaHomePage extends StatelessWidget {
     //     ],
     //   ),
     // );
-    Widget header() {
+    Widget appBar() {
       return Container(
+        alignment: Alignment.topCenter,
         width: MediaQuery.of(context).size.width,
-        height: 146,
-        padding: const EdgeInsets.only(left: 30, right: 30, bottom: 12),
+        // height: 146,
+        height: MediaQuery.of(context).size.height * 3,
+        // padding: const EdgeInsets.only(left: 30, right: 30, bottom: 12),
+        // decoration: const BoxDecoration(
+        //   gradient: LinearGradient(
+        //     begin: Alignment.topCenter,
+        //     end: Alignment.bottomCenter,
+        //     colors: <Color>[
+        //       Color(0xff54ADAA),
+        //       Color(0xff618BAE),
+        //     ],
+        //   ),
+        // ),
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: <Color>[
-              Color(0xff54ADAA),
-              Color(0xff618BAE),
-            ],
+          image: DecorationImage(
+            alignment: Alignment.topCenter,
+            image: AssetImage('assets/images/app_bar.png'),
           ),
         ),
-        child: BlocBuilder<SiswaCubit, SiswaState>(
-          builder: (context, state) {
-            if (state is SiswaSuccess) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  state.siswa.firstName.toString().length < 3
-                      ? Text(
-                          'Hi, ${state.siswa.firstName} ${state.siswa.lastName.toString().split(' ')[0]}..!',
-                          style: whiteTextStyle.copyWith(
-                              fontSize: 20, fontWeight: semiBold),
-                        )
-                      : Text(
-                          'Hi, ${state.siswa.firstName}..!',
-                          style: whiteTextStyle.copyWith(
-                            fontSize: 20,
-                            fontWeight: semiBold,
-                          ),
+      );
+    }
+
+    Widget appBarTitle() {
+      return SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(defaultPadding),
+          child: Column(
+            children: [
+              BlocBuilder<SiswaCubit, SiswaState>(
+                builder: (context, state) {
+                  if (state is SiswaSuccess) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            state.siswa.firstName.toString().length < 3
+                                ? Text(
+                                    'Hi, ${state.siswa.firstName} ${state.siswa.lastName.toString().split(' ')[0]}',
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 20, fontWeight: semiBold),
+                                  )
+                                : Text(
+                                    'Hi, ${state.siswa.firstName}..!',
+                                    style: whiteTextStyle.copyWith(
+                                      fontSize: 20,
+                                      fontWeight: semiBold,
+                                    ),
+                                  ),
+                            const SizedBox(height: 6),
+                            Text(
+                              'Kelas : ${state.siswa.kelas}',
+                              style: whiteTextStyle.copyWith(fontSize: 14),
+                            )
+                          ],
                         ),
-                  const SizedBox(height: 6),
-                  Text(
-                    'Kelas : ${state.siswa.kelas}',
-                    style: whiteTextStyle.copyWith(fontSize: 14),
-                  )
-                ],
-              );
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            BlocConsumer<AuthCubit, AuthState>(
+                              listener: (context, state) {
+                                if (state is AuthFailed) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    ),
+                                  );
+                                } else if (state is AuthInitial) {
+                                  context.read<PageCubit>().setPage(0);
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context, '/login', (route) => false);
+                                }
+                              },
+                              builder: (context, state) {
+                                if (state is AuthLoading) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return GestureDetector(
+                                  onTap: () {
+                                    context.read<AuthCubit>().logOut();
+                                  },
+                                  child: Icon(
+                                    CupertinoIcons.arrow_right_square,
+                                    color: kWhiteColor,
+                                    size: 32,
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            const SizedBox(),
+                          ],
+                        )
+                      ],
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              )
+            ],
+          ),
         ),
       );
     }
@@ -232,9 +306,21 @@ class SiswaHomePage extends StatelessWidget {
                   color: kPurpleCoror, fontWeight: medium, fontSize: 16),
             ),
             const SizedBox(height: 8),
-            const MainMenu(
-              stringImage: 'assets/images/calendar.png',
-              title: 'Jadwal\nMata Pelajaran',
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const HariPageSiswa();
+                    },
+                  ),
+                );
+              },
+              child: const MainMenu(
+                stringImage: 'assets/images/calendar.png',
+                title: 'Jadwal\nMata Pelajaran',
+              ),
             ),
             GestureDetector(
               onTap: () {
@@ -264,7 +350,8 @@ class SiswaHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Stack(children: [
-        header(),
+        appBar(),
+        appBarTitle(),
         body(),
       ]),
     );

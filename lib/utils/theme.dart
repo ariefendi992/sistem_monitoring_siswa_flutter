@@ -27,5 +27,5 @@ FontWeight medium = FontWeight.w500;
 FontWeight semiBold = FontWeight.w600;
 FontWeight bold = FontWeight.w700;
 
-double defaultPadding = 24.0;
+double defaultPadding = 16.0;
 double defaultRadius = 18.0;

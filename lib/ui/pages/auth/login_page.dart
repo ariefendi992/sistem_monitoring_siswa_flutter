@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                         BlocConsumer<AuthCubit, AuthState>(
                           listener: (context, state) {
                             if (state is AuthSuccess) {
-                              debugPrint('group = ${state.users.group}');
+                              // debugPrint('group = ${state.users.group}');
                               if (state.users.group == 'guru') {
                                 Navigator.pushNamedAndRemoveUntil(
                                     context, '/mainGuru', (route) => false);
