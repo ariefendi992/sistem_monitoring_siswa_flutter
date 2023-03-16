@@ -41,7 +41,7 @@ class SiswaModel extends Equatable {
       jenisKelamin: json['jenis_kelamin'],
       agama: json['agama'],
       alamat: json['alamat'],
-      profilPicture: json['foto'],
+      profilPicture: json['profilPicture'],
       kelas: json['kelas'],
       qrCode: json['qr_code'],
     );

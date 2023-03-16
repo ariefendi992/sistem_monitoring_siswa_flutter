@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
 import 'package:sistem_monitoring_siswa_flutter/cubit/page_cubit.dart';
 // import 'package:sistem_monitoring_siswa_flutter/cubit/auth/auth_cubit.dart';
@@ -11,6 +12,7 @@ import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/jadwal/hari_page.
 import 'package:sistem_monitoring_siswa_flutter/ui/pages/siswa/list_mapel_page.dart';
 import 'package:sistem_monitoring_siswa_flutter/ui/widgets/custom_main_menu.dart';
 import 'package:sistem_monitoring_siswa_flutter/utils/theme.dart';
+import 'package:sistem_monitoring_siswa_flutter/utils/url.dart';
 
 class SiswaHomePage extends StatelessWidget {
   const SiswaHomePage({Key? key}) : super(key: key);
@@ -177,7 +179,7 @@ class SiswaHomePage extends StatelessWidget {
         alignment: Alignment.topCenter,
         width: MediaQuery.of(context).size.width,
         // height: 146,
-        height: MediaQuery.of(context).size.height * 3,
+        height: MediaQuery.of(context).size.height,
         // padding: const EdgeInsets.only(left: 30, right: 30, bottom: 12),
         // decoration: const BoxDecoration(
         //   gradient: LinearGradient(
@@ -207,32 +209,61 @@ class SiswaHomePage extends StatelessWidget {
               BlocBuilder<SiswaCubit, SiswaState>(
                 builder: (context, state) {
                   if (state is SiswaSuccess) {
+                    debugPrint(state.siswa.profilPicture);
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
+                        Row(
                           children: [
-                            state.siswa.firstName.toString().length < 3
-                                ? Text(
-                                    'Hi, ${state.siswa.firstName} ${state.siswa.lastName.toString().split(' ')[0]}',
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 20, fontWeight: semiBold),
+                            state.siswa.profilPicture != null
+                                ? CircleAvatar(
+                                    backgroundImage: NetworkImage('$baseUrl'
+                                        '${state.siswa.profilPicture}'),
                                   )
-                                : Text(
-                                    'Hi, ${state.siswa.firstName}..!',
-                                    style: whiteTextStyle.copyWith(
-                                      fontSize: 20,
-                                      fontWeight: semiBold,
+                                : CircleAvatar(
+                                    radius: 24,
+                                    backgroundColor:
+                                        kGradienBlue.withOpacity(0.5),
+                                    child: CircleAvatar(
+                                      radius: 22,
+                                      backgroundColor:
+                                          kGreenColor.withOpacity(0.3),
+                                      child: SvgPicture.asset(
+                                        'assets/images/UserCircle.svg',
+                                        width: 200,
+                                        fit: BoxFit.fitWidth,
+                                        color: kWhiteColor.withOpacity(0.7),
+                                      ),
                                     ),
                                   ),
-                            const SizedBox(height: 6),
-                            Text(
-                              'Kelas : ${state.siswa.kelas}',
-                              style: whiteTextStyle.copyWith(fontSize: 14),
-                            )
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                state.siswa.firstName.toString().length < 3
+                                    ? Text(
+                                        'Hi, ${state.siswa.firstName} ${state.siswa.lastName.toString().split(' ')[0]}',
+                                        style: whiteTextStyle.copyWith(
+                                            fontSize: 20, fontWeight: semiBold),
+                                      )
+                                    : Text(
+                                        'Hi, ${state.siswa.firstName}..!',
+                                        style: whiteTextStyle.copyWith(
+                                          fontSize: 20,
+                                          fontWeight: semiBold,
+                                        ),
+                                      ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Kelas : ${state.siswa.kelas}',
+                                  style: whiteTextStyle.copyWith(fontSize: 14),
+                                )
+                              ],
+                            ),
                           ],
                         ),
                         Column(
@@ -296,7 +327,10 @@ class SiswaHomePage extends StatelessWidget {
     Widget body() {
       return Container(
         margin: EdgeInsets.only(
-            left: defaultPadding, right: defaultPadding, top: 160),
+          left: defaultPadding,
+          right: defaultPadding,
+          top: 160,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

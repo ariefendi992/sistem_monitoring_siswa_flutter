@@ -37,12 +37,12 @@ class SiswaMainPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: const [
             CustomNavigation(
-              imageString: 'assets/images/home.png',
+              imageString: 'assets/images/home_blue.png',
               index: 0,
               titleMenu: 'Beranda',
             ),
             CustomNavigation(
-              imageString: 'assets/images/profile.png',
+              imageString: 'assets/images/profile_blue.png',
               index: 2,
               titleMenu: 'Profile',
             ),
@@ -54,20 +54,25 @@ class SiswaMainPage extends StatelessWidget {
     return BlocBuilder<PageCubit, int>(
       builder: (context, currentIndex) {
         return Scaffold(
-          backgroundColor: const Color(0xff6483AF),
+          // backgroundColor: const Color(0xff6483AF),
+          backgroundColor: kBackgroundColor,
           floatingActionButton: SizedBox(
-            height: 60,
-            width: 60,
+            height: 52,
+            width: 52,
             child: FloatingActionButton(
               backgroundColor: kLightBlueColor,
               onPressed: () {
                 context.read<PageCubit>().setPage(1);
               },
               child: CircleAvatar(
-                backgroundColor: kPurpleCoror,
-                radius: 26,
+                backgroundColor: context.read<PageCubit>().state == 1
+                    ? kPurpleCoror
+                    : kGreyColor,
+                radius: 22,
                 child: CircleAvatar(
-                  backgroundColor: kPurpleCoror,
+                  backgroundColor: context.read<PageCubit>().state == 1
+                      ? kPurpleCoror
+                      : kGreyColor,
                   child: Icon(
                     CupertinoIcons.qrcode_viewfinder,
                     color: kWhiteColor,

@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:sistem_monitoring_siswa_flutter/models/jadwal_belajar_model.dart';
 import 'package:sistem_monitoring_siswa_flutter/models/mapel_model.dart';
@@ -31,6 +31,8 @@ class MapelService {
     final url =
         '$baseUrl/api/v2/student/jadwal-belajar?kelasId=$kelasId&hariId=$hariId';
     final response = await http.get(Uri.parse(url));
+
+    debugPrint(response.body);
 
     if (response.statusCode == 200) {
       List<JadwalBelajarModel> jadwal =
